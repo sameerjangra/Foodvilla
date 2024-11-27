@@ -1,9 +1,9 @@
 const Footer =()=>{
     return(
     <>
+    <h3>Footer </h3>
     </>
     )
 }
-console.log("Footer")
 
 export default Footer;

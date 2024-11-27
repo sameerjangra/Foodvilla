@@ -5,9 +5,15 @@ export const RestaurantCard =({name,cuisines,avgRating,cloudinaryImageId,localit
             <img src={IMG_CDN+
          cloudinaryImageId}></img>
             <h2>{name}</h2>
-            <h3>{cuisines.join(" , ")}</h3>
-            {/* <h3>{cuisines[1]}</h3> */}
-            {/* <h3>{locality}</h3> */}
+            {/* <h3>{cuisines.join(" , ")}</h3> */}
+            <h3>
+  {cuisines
+    ? cuisines.slice(0, 3).join(", ") +
+      (cuisines.length > 3 ? "..." : "")
+    : "Cuisines not available"}
+</h3>
+            {/* <h3>{cuisines[1]}</h3>
+            <h3>{locality}</h3> */}
             <h4>{avgRating} stars</h4>
         </div>
     )

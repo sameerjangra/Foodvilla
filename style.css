@@ -4,6 +4,7 @@ body{
     box-sizing: border-box;    
     height: 100%;
     width: 100%;
+    font-family:'Times New Roman', Times, serif
 
 }
 
@@ -11,7 +12,7 @@ body{
     display: flex;
     justify-content: space-between;
     margin: 10px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid black ;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
@@ -22,25 +23,49 @@ body{
 }
 
 #logoName {
-    margin-left:-830px;
+    margin-left:-610px;
     margin-top: 27px;
     font-size: 27px;            
 }
 
-.nav-items > ul{
-    list-style-type: none;
+.nav-items ul {
+    list-style: none;
+    padding: 0;
     display: flex;
-    font-size: 17px;
-   
-}
+    gap: 0px; /* Space between items */
+    
+  }
+  
+  .nav-items li {
+    display: flex;
+    align-items: center; /* Vertically aligns icon and text */
+    justify-content: center; /* Ensures content stays centered */
+    gap: 8px; /* Space between icon and text */
+    cursor: pointer;
+    width: 120px; /* Fixed width for consistency */
+    text-align: center; /* Ensures text stays aligned */
+    
+  }
+  
+  .nav-items li:hover {
+    color: rgb(198, 55, 3); /* Optional hover effect */
+  }
+  
+  .nav-items {
+    justify-content: flex-start; /* Ensures list items stay aligned to the left */
+    margin-top: 10px;
+     text-decoration: none;
+  }
 
-.nav-items > ul > li {
-    padding-top: 10px;
-    padding-right: 40px;
-}
+  .no-underline{
+    text-decoration: none;
+    color: inherit;
+  }
+  
 
 .cards {
-    width: 200px;
+    width: 230px;
+    height: 420px;
     margin: 6px;
     padding: 9px;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
@@ -49,10 +74,14 @@ body{
 
 .cards > img {
     float: left;
-    width:  200px;
-    height: 200px;
-    margin-bottom: 10px;
+    width:  230px;
+    height: 230px;
+    margin-bottom: 5px;
     background-size: cover;
+}
+a {
+  text-decoration: none; 
+  color: #000;
 }
 
 .cards > h2 {
@@ -91,3 +120,235 @@ body{
     border-radius: 4px;
     cursor: pointer;
   }
+
+  /* Shimmer Container */
+.shimmer-card {
+  width: 200px;
+  height: 350px;
+  margin: 6px;
+  padding: 9px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  background-color: #f6f6f6;
+  border-radius: 5px;
+}
+
+/* Shimmer Image */
+.shimmer-img {
+  width: 200px;
+  height: 200px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Shimmer Text Blocks */
+.shimmer-text {
+  background: #e0e0e0;
+  border-radius: 4px;
+  animation: shimmer 1.5s infinite;
+}
+
+.shimmer-title {
+  width: 80%;
+  height: 20px;
+  margin: 10px 0;
+}
+
+.shimmer-subtitle {
+  width: 60%;
+  height: 15px;
+  margin: 15px 0;
+}
+.shimmer-subtitle-2 {
+    width: 60%;
+    height: 15px;
+    margin: 15px 0;
+  }
+  
+
+/* Shimmer Animation */
+@keyframes shimmer {
+  0% {
+    background-position: -100px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+}
+
+.shimmer-img,
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #e0e0e0 25%,
+    #f6f6f6 50%,
+    #e0e0e0 75%
+  );
+  background-size: 200px 100%;
+}
+
+
+/* Error Page*/
+
+.content {
+  font-family: Avenir,Helvetica,sans-serif;
+  color: #000000;
+  background-color: none;
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+h1 {
+  font-size: 200px;
+  margin-bottom: 0;
+  margin-top: 0;  
+}
+h1 .small {
+  font-size: 20px;
+}
+
+/* Restaurant Menu Page */
+
+.restaurant-page {
+  height: 100%;
+  width: 70%;
+  margin: 0 auto; /* Horizontally centers the div */
+  display:block;
+  justify-content: center; /* Centers content horizontally */
+  align-items: center; /* Centers content vertically */
+ 
+}
+
+.restaurant-status{
+    width: 100%;
+    height: 100%;
+    display:block;
+    margin: -5px;
+    padding: 10px;
+    border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+}
+
+.restaurant-status-inner-div {
+  padding: 15px;
+  border-radius: 25px;
+  border: 1px solid rgba(115, 120, 123, 0.269) ;
+}
+
+.menu {
+  display: inline;
+}
+
+.menu > h2 {
+  padding:20px;
+  text-align: center;
+}
+
+.menu-list {
+  border-bottom: 1px solid rgba(163, 163, 163, 0.658);
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.menu-img > img {
+  padding: 10px;
+  height: 150px;
+  width: 150px;
+  border-radius: 25px;
+  object-fit: cover; /* Makes the image cover the area */
+}
+
+
+/* Shimmer Menu */
+
+.shimmer-container {
+  height: 100%;
+  width: 70%;
+  margin: 0 auto; /* Horizontally centers the div */
+  display:block;
+  justify-content: center; /* Centers content horizontally */
+  align-items: center; /* Centers content vertically */
+ 
+}
+
+.shimmer-header{
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 50%,
+    #f0f0f0 75%
+  );
+  border: 1px solid rgba(171, 175, 178, 0.269) ;
+  border-radius: 25px;
+  background-size: 200% 10%;
+  animation: shimmer-loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+.shimmer-header {
+  margin-top:60px ;
+  width: 100%;
+  height: 110px;
+  margin-bottom: 20px;
+}
+.shimmer-info{
+  margin-top: 125px;
+  margin-bottom: -120px;
+  display:flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(163, 163, 163, 0.658)
+}
+.shimmer-img1{
+  height: 150px;
+  width: 150px;
+  border-radius: 25px;
+  padding: 10px;
+  background-color:  #f6f6f6;
+  margin-bottom: 10px;
+  animation: shimmer 1.5s infinite;  
+}
+
+.shimmer-menu-item {
+  width: 100%;
+  height: 50px;
+}
+
+.shimmer-img1,
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #e0e0e0 25%,
+    #f6f6f6 50%,
+    #e0e0e0 75%
+  );
+  background-size: 200px 100%;
+}
+
+
+@keyframes shimmer-loading {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* About Page  */
+.about-page {
+  height: 100%;
+  width: 70%;
+  margin: 0 auto; /* Horizontally centers the div */
+  display:block;
+  justify-content: center; /* Centers content horizontally */
+  align-items: center; /* Centers content vertically */
+ 
+}

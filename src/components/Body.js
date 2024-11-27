@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { RestaurantCard } from "./RestaurantCard";
+import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 function filterData(searchText, restaurants) {
     return restaurants.filter((restaurant) =>
-        restaurant.info.name.toLowerCase().includes(searchText.toLowerCase())
+        restaurant?.info.name?.toLowerCase()?.includes(searchText?.toLowerCase())
     );
 }
 
@@ -19,19 +21,19 @@ const Body = () => {
 
     async function getRestaurants() {
         try {
-            const data = await fetch(
+             const data = await fetch(
                 "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.45970&lng=77.02820&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
             );
             const json = await data.json();
 
             // Extract the restaurant data from the correct location
-            const restaurants = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
-
+            const restaurants = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
+            console.log(restaurants)
             // Set the extracted restaurant data
             setAllRestaurants(restaurants);
             setFilteredRestaurants(restaurants); // Initialize filteredRestaurants with all restaurants
             setLoading(false); // Set loading to false after data is fetched
-            console.log(restaurants); // Optionally log the data to inspect it
+        
         } catch (error) {
             console.error("Error fetching restaurant data:", error);
             setLoading(false); // Stop loading even in case of error
@@ -62,12 +64,17 @@ const Body = () => {
             </div>
 
             {loading ? (
-                <p>Loading...</p> // Show a loading message while fetching
+                // <p>Loading...</p> // Show a loading message while fetching
+                <Shimmer/ >
             ) : (
                 <div className="restaurant-list">
                     {filteredRestaurants.length > 0 ? (
-                        filteredRestaurants.map((restaurant) => (
-                            <RestaurantCard {...restaurant.info} key={restaurant.info.id} />
+                        filteredRestaurants.map((restaurant) => 
+                        (<Link to={"/restaurant/" + restaurant.info.id}
+                        key={restaurant.info.id}
+                        >
+                            <RestaurantCard {...restaurant.info}  />
+                            </Link>
                         ))
                     ) : (
                         <p>No restaurants found</p> // Show a message when no restaurants match
