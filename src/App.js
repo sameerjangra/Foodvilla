@@ -1,23 +1,35 @@
-import React from "react";
+import React, { lazy ,Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Heading from "./components/Header";
 import Body from "./components/Body";
 import Footer from "./components/Footer";
-import About from "./components/About";
 import Cart from "./components/Cart";
-import Contact from "./components/Contact";
 import Error from "./components/Error";
 import Profile from "./components/Profile";
 import { createBrowserRouter, RouterProvider , Outlet} from "react-router-dom";
-import RestaurantMenu from "./components/RestaurantMenu";
+import RestaurantMenu from "./components/RestaurantMenu"; 
+import Instamart from "./components/Instamart";
+import UserContext from "./utils/UserContext";
+
+const Contact = lazy(()=>import("./components/Contact"))
+const About = lazy(()=>import("./components/About"))
+
 
 const Foodvilla = () => {
+  const[user ,setUser]=useState({
+    name:"Sameer Jangra",
+    email:"sameerjangra99913@gmail.com"
+  });
   return (
-    <>
-      <Heading />
+    <UserContext.Provider 
+    value={{
+       user:user,
+       setUser:setUser
+      }}>
+      <Heading />   
       <Outlet />
       <Footer />
-    </>
+    </UserContext.Provider>
   );
 };
 
@@ -35,7 +47,10 @@ const appRouter = createBrowserRouter(
         },
         {
           path: "/about",
-          element: <About />,
+          element:
+          <Suspense> 
+            <About/>
+            </Suspense>,
           children :[
             {
               path:"profile",
@@ -43,15 +58,22 @@ const appRouter = createBrowserRouter(
             }
           ]
         },
-        {
+        { 
           path: "/contact",
-          element: <Contact />,
+          element: 
+          <Suspense fallback={<h3>Kuch bhi </h3>}>
+            <Contact />
+            </Suspense>,
         },
         {
           path: "/cart",
           element: <Cart/>,
         },
         {
+          path: "/instamart",
+          element: <Instamart/>,
+        },
+        {   
           path: "/restaurant/:id",
           element: <RestaurantMenu/>
         }
