@@ -1,13 +1,10 @@
-import { useContext } from "react";
-import UserContext from "../utils/UserContext";
-
-const Footer =()=>{
-    const {user} = useContext(UserContext);
-    return(
-    <>
-    <h3 className="pl-52">This website is developed by {user.name} - {user.email}</h3>
-    </>
-    )
-}
+const Footer = () => {
+  return (
+    <footer className="bg-gray-800 text-white text-center py-4 mt-10">
+      <p className="text-lg">🍽️ FoodVilla - Serving Fresh & Tasty Meals</p>
+      <p className="text-sm">© {new Date().getFullYear()} FoodVilla. All rights reserved.</p>
+    </footer>
+  );
+};
 
 export default Footer;
