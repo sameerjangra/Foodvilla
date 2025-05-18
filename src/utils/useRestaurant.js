@@ -43,6 +43,7 @@ const useRestaurant = (id) => {
       setLoading(false);
     }
   }
+  // console.log(restaurantMenu);
 
   return { restaurant, restaurantMenu, loading };
 };
