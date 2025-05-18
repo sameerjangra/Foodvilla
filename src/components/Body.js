@@ -48,7 +48,7 @@ const Body = () => {
     return (
         <>
        
-            <div className="flex justify-center m-[0px 13px 5px 20px] p-2"> 
+            <div className="flex justify-center md:m-[0px 13px 5px 20px] m-5 p-2"> 
                 <input
                     type="text"
                     className="text-sm p-2 rounded border border-gray-300 w-[640px]"
@@ -74,7 +74,7 @@ const Body = () => {
                 // <p>Loading...</p> // Show a loading message while fetching
                 <Shimmer/ >
             ) : (
-                <div className="flex flex-wrap m-3  pl-2.5">
+                <div className="flex flex-wrap md:m-3  md:pl-2.5">
                     {filteredRestaurants.length > 0 ? (
                         filteredRestaurants.map((restaurant) => 
                         (<Link to={"/restaurant/" + restaurant.info.id}

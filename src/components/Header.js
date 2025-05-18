@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState } from "react";
 import LOGOURL from "../assets/img/logo";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,79 +10,97 @@ import {
   faSignInAlt,
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
-
 import { useSelector } from "react-redux";
 
 const Title = () => (
-  <>
-    <a href="/" className="flex">
-      <img data-testid="logo" className="h-20 rounded-full p-2" alt="logo" src={LOGOURL}></img>
-      <h3 className="self-center text-2xl font-bold">Food<span className="text-orange-500 rounded-md">Villa </span></h3>
-    </a>
-  </>
+  <Link to="/" className="flex items-center space-x-2 -ml-5">
+    <img
+      data-testid="logo"
+      className="h-12 md:h-20 rounded-full p-1"
+      alt="logo"
+      src={LOGOURL}
+    />
+    <h3 className="text-base md:text-2xl font-bold">
+      Food
+      <span className="text-orange-500 rounded-md">Villa</span>
+    </h3>
+  </Link>
 );
 
 const HeadingComponent = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const cartItems = useSelector((store) => store.cart.items);
 
   return (
-    <div className="flex justify-between m-3 shadow-xl">
+    <div className="flex justify-between items-center md:m-3  m-2 px-4 shadow-xl">
       <Title />
-      <div className="justify-between m-2 p-4">
-        <ul className="flex items-center space-x-6">
-          <span className="font-bold text-red-700 text-xl"></span>
-          <li className="hover:text-orange-700">
-            <Link to="/" className="no-underline">
-              <FontAwesomeIcon icon={faHome} /> Home
-            </Link>
-          </li>
-          <li className="hover:text-orange-700">
-            <Link to="/about" className="no-underline">
-              <FontAwesomeIcon icon={faInfoCircle} /> About
-            </Link>
-          </li>
-          <li className="hover:text-orange-700">
-            <Link to="/contact" className="no-underline">
-              <FontAwesomeIcon icon={faPhone} /> Contact Us
-            </Link>
-          </li>
-          <li className="hover:text-orange-700">
-            <Link to="/instamart" className="no-underline">
-              Instamart
-            </Link>
-          </li>
-          <li className="relative hover:text-orange-700">
-            <Link to="/cart" className="no-underline">
-              <FontAwesomeIcon icon={faShoppingCart} /> 
-            </Link>
-            {cartItems.length > 0 && (
-              <span
-                className="absolute top-[-8px] right-[-16px] bg-red-500 text-white rounded-full text-xs h-5 w-5 flex items-center justify-center"
-                title="Cart Items"
-              >
-                {cartItems.length}
-              </span>
-            )}
-          </li>
-          {isLoggedIn ? (
-            <li
-              className="hover:text-orange-700 cursor-pointer"
-              onClick={() => setIsLoggedIn(false)}
+      <ul className="flex items-center space-x-4 md:space-x-6">
+        {/* Home */}
+        <li className="hover:text-orange-700">
+          <Link to="/" className="flex items-center space-x-1">
+            <FontAwesomeIcon icon={faHome} />
+            <span className="hidden md:inline">Home</span>
+          </Link>
+        </li>
+
+        {/* About */}
+        <li className="hover:text-orange-700">
+          <Link to="/about" className="flex items-center space-x-1">
+            <FontAwesomeIcon icon={faInfoCircle} />
+            <span className="hidden md:inline">About</span>
+          </Link>
+        </li>
+
+        {/* Contact */}
+        <li className="hover:text-orange-700">
+          <Link to="/contact" className="flex items-center space-x-1">
+            <FontAwesomeIcon icon={faPhone} />
+            <span className="hidden md:inline">Contact</span>
+          </Link>
+        </li>
+
+        {/* Instamart
+        <li className="hover:text-orange-700">
+          <Link to="/instamart" className="flex items-center space-x-1">
+            <span className="hidden md:inline">Instamart</span>
+          </Link>
+        </li> */}
+
+        {/* Cart */}
+        <li className="relative hover:text-orange-700">
+          <Link to="/cart" className="flex items-center space-x-1">
+            <FontAwesomeIcon icon={faShoppingCart} />
+            <span className="hidden md:inline">Cart</span>
+          </Link>
+          {cartItems.length > 0 && (
+            <span
+              className="absolute top-[-8px] right-[-10px] bg-red-500 text-white rounded-full text-xs h-5 w-5 flex items-center justify-center"
+              title="Cart Items"
             >
-              <FontAwesomeIcon icon={faSignOutAlt} /> Logout
-            </li>
-          ) : (
-            <li
-              className="hover:text-orange-700 cursor-pointer"
-              onClick={() => setIsLoggedIn(true)}
-            >
-              <FontAwesomeIcon icon={faSignInAlt} /> Login
-            </li>
+              {cartItems.length}
+            </span>
           )}
-        </ul>
-      </div>
+        </li>
+
+        {/* Login / Logout
+        {isLoggedIn ? (
+          <li
+            className="hover:text-orange-700 cursor-pointer flex items-center space-x-1"
+            onClick={() => setIsLoggedIn(false)}
+          >
+            <FontAwesomeIcon icon={faSignOutAlt} />
+            <span className="hidden md:inline">Logout</span>
+          </li>
+        ) : (
+          <li
+            className="hover:text-orange-700 cursor-pointer flex items-center space-x-1"
+            onClick={() => setIsLoggedIn(true)}
+          >
+            <FontAwesomeIcon icon={faSignInAlt} />
+            <span className="hidden md:inline">Login</span>
+          </li>
+        )} */}
+      </ul>
     </div>
   );
 };
