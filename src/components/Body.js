@@ -20,26 +20,32 @@ const Body = () => {
 
     async function getRestaurants() {
         try {
-             const data = await fetch(
-                "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.45970&lng=77.02820&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-            );
-            const json = await data.json();
-
-            console.log(json);
-            // Extract the restaurant data from the correct location
-            const restaurants = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
-            
-            // Set the extracted restaurant data
-            setAllRestaurants(restaurants);
-            setFilteredRestaurants(restaurants); // Initialize filteredRestaurants with all restaurants
-            setLoading(false); // Set loading to false after data is fetched
-        
+          const data = await fetch(
+            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.45970&lng=77.02820&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+          );
+          const json = await data.json();
+      
+          // Dynamically find restaurant data from cards
+          const cards = json?.data?.cards;
+          let restaurants = [];
+      
+          for (const card of cards) {
+            const resList = card?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+            if (resList?.length) {
+              restaurants = resList;
+              break;
+            }
+          }
+      
+          setAllRestaurants(restaurants);
+          setFilteredRestaurants(restaurants);
+          setLoading(false);
         } catch (error) {
-            console.error("Error fetching restaurant data:", error);
-            setLoading(false); // Stop loading even in case of error
+          console.error("Error fetching restaurant data:", error);
+          setLoading(false);
         }
-    }
-
+      }
+      
     const offline = useOnline();
     if(!offline) {
         return <OfflinePage />
